@@ -66,25 +66,25 @@ contract WorkTokenTest is Test {
     }
 
     function testDecreaseAllowance() public{
-       assertTrue(token.approve(alice, 500));
+        assertTrue(token.approve(alice, 500));
         assertEq(token.allowance(address(this), alice), 500);
         assertTrue(token.decreaseAllowance(alice, 100));
         assertEq(token.allowance(address(this), alice),400);
-    } 
+    }
 
     //Test FAIL
-    function testFailTransferNotBallance() public{
+    function testFailTransferNotBalance() public{
         assertTrue(token.transfer(alice, 1001));
     }
 
-    function testFailTransferFromNotBallance() public{
+    function testFailTransferFromNotBalance() public{
         assertTrue(token.approve(alice, 500));
         assertEq(token.allowance(address(this), alice), 500);
         vm.prank(alice);
         assertTrue(token.transferFrom(address(this), clara,600));
     }
 
-    function testFailApproveNotBallance() public{
+    function testFailApproveNotBalance() public{
         assertTrue(token.approve(alice, 10001));
     }
 }
